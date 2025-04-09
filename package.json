@@ -1,0 +1,19 @@
+{
+  "name": "cifrareactpractice",
+  "version": "1.0.0",
+  "description": "Учебный проект",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexArtsy/CifraReactPractice.git"
+  },
+  "author": "AlexArts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexArtsy/CifraReactPractice/issues"
+  },
+  "homepage": "https://github.com/AlexArtsy/CifraReactPractice#readme"
+}
