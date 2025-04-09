@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Временные файлы
+*.log
+*.swp
+*.bak
+*.tmp
+
+# Конфигурационные файлы IDE
+.idea/
+.vscode/
+
+# Файлы окружения
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Директории для сборки
+build/
+dist/
+out/
+
+# Vite
+.vite/
+
+# Remix
+.build/
+
+# Next.js
+.next/
+
+# Webpack
