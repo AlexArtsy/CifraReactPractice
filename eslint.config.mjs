@@ -38,7 +38,7 @@ export default [
           case: 'kebabCase', // Требует kebab-case (например, `my-component.jsx`)
           ignore: [
             '\\.(test|spec)\\.(js|jsx)$', // Игнорировать тестовые файлы
-            '^[A-Z]+\\.(js|jsx)$' // Разрешить UPPER_CASE (например, `CONSTANTS.js`)
+            '^[A-Z]+\\.(js|jsx)$', // Разрешить UPPER_CASE (например, `CONSTANTS.js`)
           ],
         },
       ],
@@ -73,9 +73,9 @@ export default [
       'no-unused-vars': 'warn',
       'no-console': 'warn',
       'no-debugger': 'error',
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
-      'indent': ['error', 2],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      indent: ['error', 2],
       'arrow-body-style': 'off',
       'prefer-arrow-callback': 'off',
     },
