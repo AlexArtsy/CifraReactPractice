@@ -1,6 +1,8 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+import typescriptParser from '@typescript-eslint/parser';
+import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 import jsxRuntime from 'eslint-plugin-react/configs/jsx-runtime.js';
 import unicorn from 'eslint-plugin-unicorn';
@@ -14,6 +16,13 @@ export default [
     settings: {
       react: {
         version: 'detect',
+      },
+    },
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        project: './tsconfig.json', // Указываем путь к tsconfig
       },
     },
   },
@@ -42,6 +51,17 @@ export default [
           ],
         },
       ],
+    },
+  },
+  {
+    plugins: {
+      '@typescript-eslint': typescriptPlugin,
+      prettier: prettierPlugin,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'prettier/prettier': 'error',
     },
   },
   {

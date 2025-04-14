@@ -4,8 +4,16 @@ module.exports = {
   trailingComma: 'all', // Висящие запятые
   printWidth: 80, // Максимальная длина строки
   tabWidth: 2, // Размер отступа
-  useTabs: false, // Использовать пробелы вместо табов
+  useTabs: true, // Использовать пробелы вместо табов
   bracketSpacing: true, // Пробелы между скобками в объектах
   jsxSingleQuote: false, // Двойные кавычки в JSX
   arrowParens: 'always', // Скобки вокруг аргументов стрелочных функций
+  overrides: [
+    {
+      files: '*.{ts,tsx}',
+      options: {
+        parser: 'typescript', // Указываем парсер для TS-файлов
+      },
+    },
+  ],
 };
