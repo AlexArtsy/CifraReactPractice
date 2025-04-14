@@ -1,18 +1,32 @@
 module.exports = {
-  semi: true, // Точки с запятой в конце строк
-  singleQuote: true, // Одинарные кавычки
-  trailingComma: 'all', // Висящие запятые
-  printWidth: 80, // Максимальная длина строки
-  tabWidth: 2, // Размер отступа
-  useTabs: true, // Использовать пробелы вместо табов
-  bracketSpacing: true, // Пробелы между скобками в объектах
-  jsxSingleQuote: false, // Двойные кавычки в JSX
-  arrowParens: 'always', // Скобки вокруг аргументов стрелочных функций
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  printWidth: 100, // Современные мониторы позволяют увеличить до 100-120
+  tabWidth: 2,
+  useTabs: false, // Лучше использовать пробелы для кроссплатформенной совместимости
+  bracketSpacing: true,
+  bracketSameLine: false, // JSX закрывающие скобки на той же линии
+  jsxSingleQuote: false,
+  arrowParens: 'always',
+  endOfLine: 'auto', // Автоматически определять концы строк (LF/CRLF)
   overrides: [
     {
-      files: '*.{ts,tsx}',
+      files: ['*.{ts,tsx}'],
       options: {
-        parser: 'typescript', // Указываем парсер для TS-файлов
+        parser: 'typescript',
+      },
+    },
+    {
+      files: ['*.json'],
+      options: {
+        tabWidth: 2,
+      },
+    },
+    {
+      files: ['*.css', '*.scss'],
+      options: {
+        singleQuote: false,
       },
     },
   ],

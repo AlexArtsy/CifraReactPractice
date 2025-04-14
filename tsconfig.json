@@ -26,8 +26,30 @@
     },
     "allowJs": true, // Разрешить .js-файлы
     "outDir": "./dist", // Папка для скомпилированных файлов (если нужно)
-    "isolatedModules": true // Важно для работы с Babel/ESLint
+    "isolatedModules": true, // Важно для работы с Babel/ESLint
+    "allowSyntheticDefaultImports": true, // Для совместимости с CommonJS
+    "resolveJsonModule": true, // Импорт JSON файлов
+    "strictNullChecks": true, // Явная проверка null/undefined
+    "noFallthroughCasesInSwitch": true // Предупреждение о break в switch
   },
-  "include": ["src/**/*"], // Какие файлы проверять
-  "exclude": ["node_modules", "dist", "**/*.test.ts"] // Игнорируемые файлы
+  "include": [
+    // Какие файлы проверять
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "vite.config.ts" // Если используете Vite
+  ],
+  "exclude": [
+    // Игнорируемые файлы
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.config.js",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    ".eslintrc.*",
+    ".prettierrc.*"
+  ]
 }

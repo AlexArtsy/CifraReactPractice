@@ -10,74 +10,32 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   js.configs.recommended,
+
+  // Конфигурация для TypeScript файлов
   {
     ...reactRecommended,
     ...jsxRuntime,
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
     settings: {
       react: {
         version: 'detect',
       },
     },
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        project: './tsconfig.json', // Указываем путь к tsconfig
-      },
-    },
   },
+
+  // Конфигурация для JavaScript файлов
   {
-    plugins: {
-      'react-hooks': reactHooks,
-    },
-    rules: {
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-    },
-  },
-  {
-    // Правило для имен файлов в kebab-case
-    plugins: {
-      unicorn,
-    },
-    rules: {
-      'unicorn/filename-case': [
-        'error',
-        {
-          case: 'kebabCase', // Требует kebab-case (например, `my-component.jsx`)
-          ignore: [
-            '\\.(test|spec)\\.(js|jsx)$', // Игнорировать тестовые файлы
-            '^[A-Z]+\\.(js|jsx)$', // Разрешить UPPER_CASE (например, `CONSTANTS.js`)
-          ],
-        },
-      ],
-    },
-  },
-  {
-    plugins: {
-      '@typescript-eslint': typescriptPlugin,
-      prettier: prettierPlugin,
-    },
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      'prettier/prettier': 'error',
-    },
-  },
-  {
-    plugins: {
-      prettier: prettierPlugin,
-    },
-    rules: {
-      'prettier/prettier': 'error', // Включить Prettier как правило ESLint
-    },
-  },
-  {
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.es2021,
-        ...globals.node,
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -87,7 +45,29 @@ export default [
         },
       },
     },
+  },
+
+  // Общие правила для всех файлов
+  {
+    plugins: {
+      'react-hooks': reactHooks,
+      '@typescript-eslint': typescriptPlugin,
+      unicorn,
+      prettier: prettierPlugin,
+    },
     rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'unicorn/filename-case': [
+        'error',
+        {
+          case: 'kebabCase',
+          ignore: ['\\.(test|spec)\\.(js|jsx|ts|tsx)$', '^[A-Z]+\\.(js|jsx|ts|tsx)$'],
+        },
+      ],
+      'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
       'no-unused-vars': 'warn',
@@ -99,5 +79,10 @@ export default [
       'arrow-body-style': 'off',
       'prefer-arrow-callback': 'off',
     },
+  },
+
+  // Игнорирование конфигурационных файлов
+  {
+    ignores: ['**/*.config.js', '**/*.rc.js', '.prettierrc.js', '.eslintrc.js'],
   },
 ];
