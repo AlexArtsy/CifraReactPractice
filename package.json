@@ -1,6 +1,7 @@
 {
   "name": "cifrareactpractice",
   "version": "1.0.0",
+  "type": "module",
   "description": "Учебный проект",
   "main": "index.tsx",
   "scripts": {

@@ -87,6 +87,6 @@ export default [
 
   // Игнорирование конфигурационных файлов
   {
-    ignores: ['**/*.config.js', '**/*.rc.js', '.prettierrc.js', '.eslintrc.js'],
+    ignores: ['**/*.config.js', '**/*.rc.js', '.prettierrc.json', '.eslintrc.js'],
   },
 ];
