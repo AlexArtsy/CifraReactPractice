@@ -7,6 +7,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import jsxRuntime from 'eslint-plugin-react/configs/jsx-runtime.js';
 import unicorn from 'eslint-plugin-unicorn';
 import prettierPlugin from 'eslint-plugin-prettier';
+import nextPlugin from '@next/eslint-plugin-next';
 
 export default [
   js.configs.recommended,
@@ -48,6 +49,18 @@ export default [
           jsx: true,
         },
       },
+    },
+  },
+
+  // Конфигурация для Next.js
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      // Дополнительные правила для Next.js
     },
   },
 

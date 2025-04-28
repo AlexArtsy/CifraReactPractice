@@ -14,7 +14,7 @@ export default (env, argv) => {
   return {
     entry: './src/index.tsx',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'distWebpack'),
       filename: 'bundle.[contenthash].js',
       publicPath: '/',
     },
@@ -65,6 +65,10 @@ export default (env, argv) => {
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
+        },
+        {
+          test: /\.svg$/,
+          use: ['@svgr/webpack', 'file-loader'],
         },
       ],
     },

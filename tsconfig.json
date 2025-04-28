@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "ESNext", // Современный ECMAScript
     "module": "ESNext", // Использовать ES-модули
-    "lib": ["DOM", "ESNext"], // Библиотеки для типов
-    "jsx": "react-jsx", // JSX-трансформация (React 17+)
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Библиотеки для типов
+    "jsx": "preserve", // JSX-трансформация (React 17+)
     "strict": true, // Включить все strict-опции
     "moduleResolution": "node", // Для работы с node_modules
     "esModuleInterop": true, // Упрощённый импорт CommonJS
@@ -30,7 +30,14 @@
     "allowSyntheticDefaultImports": true, // Для совместимости с CommonJS
     "resolveJsonModule": true, // Импорт JSON файлов
     "strictNullChecks": true, // Явная проверка null/undefined
-    "noFallthroughCasesInSwitch": true // Предупреждение о break в switch
+    "noFallthroughCasesInSwitch": true, // Предупреждение о break в switch
+    "incremental": true, // Ускорение последующих сборок
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "noEmit": true
   },
   "include": [
     // Какие файлы проверять
@@ -38,7 +45,9 @@
     "src/**/*.tsx",
     "src/**/*.js",
     "src/**/*.jsx",
-    "vite.config.ts" // Если используете Vite
+    "vite.config.ts", // Если используете Vite
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     // Игнорируемые файлы
