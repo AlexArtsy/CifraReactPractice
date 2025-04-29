@@ -31,12 +31,14 @@ export default (env, argv) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader',
+              loader: 'ts-loader',
               options: {
-                presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+                transpileOnly: true, // Ускоряет сборку
+                compilerOptions: {
+                  noEmit: false, // Важно для генерации вывода
+                },
               },
             },
-            'ts-loader',
           ],
         },
         {
@@ -75,13 +77,13 @@ export default (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         favicon: './src/assets/favicon.ico',
       }),
     ],
     devServer: {
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(__dirname, 'distWebpack'),
       },
       historyApiFallback: true,
       compress: true,

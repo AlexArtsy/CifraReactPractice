@@ -25,7 +25,7 @@
       "@services/*": ["services/*"] // Алиас для API-сервисов
     },
     "allowJs": true, // Разрешить .js-файлы
-    "outDir": "./dist", // Папка для скомпилированных файлов (если нужно)
+    "outDir": "./distWebpack", // Папка для скомпилированных файлов (если нужно)
     "isolatedModules": true, // Важно для работы с Babel/ESLint
     "allowSyntheticDefaultImports": true, // Для совместимости с CommonJS
     "resolveJsonModule": true, // Импорт JSON файлов
