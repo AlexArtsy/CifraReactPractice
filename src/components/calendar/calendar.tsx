@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Calendar } from '@mantine/dates';
-import { Box, Text } from '@mantine/core';
+import { Box } from '@mantine/core';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 
@@ -10,19 +10,14 @@ interface MantineCalendarProps {
   maxDate?: Date;
   dateFormat?: string;
   locale?: string;
-  onChange?: (date: Date | null) => void; // Добавляем поддержку null
 }
 
 const MantineCalendar: React.FC<MantineCalendarProps> = ({
   firstDayOfWeek = 1,
   minDate,
   maxDate,
-  dateFormat = 'DD.MM.YYYY',
   locale = 'en',
-  onChange,
 }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
   dayjs.locale(locale);
 
   return (
@@ -42,12 +37,6 @@ const MantineCalendar: React.FC<MantineCalendarProps> = ({
           },
         }}
       />
-
-      {selectedDate && (
-        <Text mt="md" fw={500}>
-          Выбрана дата: {dayjs(selectedDate).format(dateFormat)}
-        </Text>
-      )}
     </Box>
   );
 };
