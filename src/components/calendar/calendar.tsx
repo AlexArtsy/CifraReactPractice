@@ -28,26 +28,26 @@ const MantineCalendar: React.FC<MantineCalendarProps> = ({
   return (
     <Box maw={400} mx="auto">
       <Calendar
-      // firstDayOfWeek={firstDayOfWeek}
-      // minDate={minDate}
-      // maxDate={maxDate}
-      // locale={locale}
-      // size="sm"
-      // styles={{
-      //   calendarHeader: {
-      //     marginBottom: '1rem',
-      //   },
-      //   day: {
-      //     borderRadius: '50%',
-      //   },
-      // }}
+        firstDayOfWeek={firstDayOfWeek}
+        minDate={minDate}
+        maxDate={maxDate}
+        locale={locale}
+        size="sm"
+        styles={{
+          calendarHeader: {
+            marginBottom: '1rem',
+          },
+          day: {
+            borderRadius: '50%',
+          },
+        }}
       />
 
-      {/* {selectedDate && (
+      {selectedDate && (
         <Text mt="md" fw={500}>
           Выбрана дата: {dayjs(selectedDate).format(dateFormat)}
         </Text>
-      )} */}
+      )}
     </Box>
   );
 };
