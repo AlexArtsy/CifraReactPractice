@@ -1,15 +1,16 @@
 import React from 'react';
-import reactLogo from '@assets/react.svg';
+import Tabs from './components/tabs/tabs';
+import { Provider as ChakraProvider } from '@/components/ui/provider';
+import { MantineProvider } from '@mantine/core';
+import { lists, content } from '@/components/tabs/config';
 
 const App: React.FC = () => {
   return (
-    <div className="app">
-      <img src={reactLogo} alt="React Logo" width={100} />
-      <h1>React + TypeScript App</h1>
-      <p>
-        Edit <code>src/App.tsx</code> to start coding!
-      </p>
-    </div>
+    <ChakraProvider>
+      <MantineProvider>
+        <Tabs variant={'line'} lists={lists} content={content} />
+      </MantineProvider>
+    </ChakraProvider>
   );
 };
 

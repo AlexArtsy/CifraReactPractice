@@ -3,9 +3,9 @@
     "target": "ESNext", // Современный ECMAScript
     "module": "ESNext", // Использовать ES-модули
     "lib": ["DOM", "DOM.Iterable", "ESNext"], // Библиотеки для типов
-    "jsx": "preserve", // JSX-трансформация (React 17+)
+    "jsx": "react-jsx", // JSX-трансформация (React 17+)
     "strict": true, // Включить все strict-опции
-    "moduleResolution": "node", // Для работы с node_modules
+    "moduleResolution": "Bundler", // Для работы с node_modules
     "esModuleInterop": true, // Упрощённый импорт CommonJS
     "skipLibCheck": true, // Пропускать проверку типов библиотек
     "forceConsistentCasingInFileNames": true, // Чувствительность к регистру в именах файлов
