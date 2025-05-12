@@ -42,7 +42,53 @@ export default (env, argv) => {
           ],
         },
         {
-          test: /\.(css|scss)$/,
+          test: /\.css$/i,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  config: path.resolve(__dirname, 'postcss.config.cjs'),
+                },
+              },
+            },
+          ],
+        },
+
+        // Обработка CSS модулей (только ваши модульные стили)
+        {
+          test: /\.module\.css$/,
+          exclude: path.resolve(__dirname, 'node_modules'),
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  auto: true,
+                  localIdentName: isProduction
+                    ? '[hash:base64]'
+                    : '[path][name]__[local]--[hash:base64:5]',
+                },
+              },
+            },
+            'postcss-loader',
+          ],
+        },
+
+        // Обработка SCSS (глобальные стили)
+        {
+          test: /\.scss$/,
+          include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/styles')],
+          use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        },
+
+        // Обработка SCSS модулей
+        {
+          test: /\.module\.scss$/,
+          exclude: path.resolve(__dirname, 'node_modules'),
           use: [
             'style-loader',
             {

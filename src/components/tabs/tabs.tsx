@@ -13,7 +13,7 @@ const MyTabs: React.FC<IProps> = (props) => {
 
   return (
     <Box display="flex" justifyContent="center" width="100%">
-      <Tabs.Root variant={variant}>
+      <Tabs.Root defaultValue={lists[0].value} variant={variant}>
         <Tabs.List>
           {lists.map(({ value, list }) => (
             <Tabs.Trigger key={value} value={value}>
