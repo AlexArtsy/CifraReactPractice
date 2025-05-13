@@ -30,6 +30,9 @@ Thumbs.db
 # Директории для сборки
 build/
 dist/
+distNext/
+distWebpack/
+distVite/
 out/
 
 # Vite
