@@ -1,4 +1,1 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+@layer reset, base, tokens, recipes, utilities;

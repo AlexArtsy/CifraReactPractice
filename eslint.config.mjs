@@ -31,8 +31,11 @@ export default [
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       globals: {
-        React: "readonly", // Разрешаем использовать React без импорта
-        JSX: "readonly",  // Если используется TSX
+        React: 'readonly', // Разрешаем использовать React без импорта
+        JSX: 'readonly', // Если используется TSX
+        ...globals.browser,
+        ...globals.es2021,
+        ...globals.node, // Если есть серверный код
       },
       parser: typescriptParser,
       parserOptions: {
@@ -108,6 +111,15 @@ export default [
 
   // Игнорируемые файлы
   {
-    ignores: ['.prettierrc.js', '**/*.config.js', '**/*.config.mjs', '.next/**', 'node_modules/**', 'dist/**'],
+    ignores: [
+      'styled-system/**/*.mjs',
+      'postcss.config.cjs',
+      '.prettierrc.js',
+      '**/*.config.js',
+      '**/*.config.mjs',
+      '.next/**',
+      'node_modules/**',
+      'dist/**',
+    ],
   },
 ];

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Next.js 14 Modern Setup',
-  description: 'Ручная настройка Next.js с ESM и TypeScript',
+  title: 'Task 3.1',
+  description: 'Задане 3.1',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
