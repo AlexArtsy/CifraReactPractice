@@ -7,3 +7,9 @@
 [![TypeScript](https://img.shields.io/badge/lang-typescript-blue)](https://www.typescriptlang.org/)
 
 Практические задания курса "Прочные основы создания React-приложений" в [Академии Цифра](https://academy.udmr.ru/)
+
+
+##Задание 3.1##
+1. Использовать сборщик Next.js
+2. Создать компонент Card (title, content, Button) и использовать CSS Modules
+3. Компонент Button (cva - варианты) стилизовать Panda CSS

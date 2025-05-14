@@ -30,6 +30,9 @@ Thumbs.db
 # Директории для сборки
 build/
 dist/
+distNext/
+distWebpack/
+distVite/
 out/
 
 # Vite
@@ -42,3 +45,7 @@ out/
 .next/
 
 # Webpack
+
+## Panda
+styled-system
+styled-system-studio
