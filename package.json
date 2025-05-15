@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Учебный проект",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "test",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
@@ -32,9 +36,15 @@
   },
   "homepage": "https://github.com/AlexArtsy/CifraReactPractice#readme",
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
     "@eslint/js": "^9.24.0",
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-define-config": "^2.1.0",
@@ -47,7 +57,16 @@
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
+    "postcss": "^8.5.3",
     "prettier": "^3.5.3",
-    "typescript-eslint": "^8.29.1"
+    "tailwindcss": "^4.1.7",
+    "typescript-eslint": "^8.29.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

@@ -1,7 +1,0 @@
-**/*.config.js
-**/*.rc.js
-.prettierrc.*
-.eslintrc.*
-dist/
-build/
-node_modules/
