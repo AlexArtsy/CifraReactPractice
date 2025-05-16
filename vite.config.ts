@@ -3,9 +3,11 @@ import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import tailwind from '@tailwindcss/postcss';
 import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     react({
       jsxImportSource: '@emotion/react', // Если используете Emotion (опционально)
       babel: {
@@ -35,7 +37,6 @@ export default defineConfig({
         manualChunks: {
           // Разделение кода на чанки (опционально)
           react: ['react', 'react-dom'],
-          vendor: ['lodash', 'axios'],
         },
       },
     },
