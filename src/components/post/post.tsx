@@ -19,7 +19,7 @@ type Comment = {
   body: string;
 };
 
-export const Post = ({ userId, id, title, body }: PostProps): JSX.Element => {
+export const Post = ({ id, title, body }: PostProps): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
