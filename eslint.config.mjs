@@ -17,6 +17,10 @@ export default [
     ...jsxRuntime,
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+      },
       parser: typescriptParser,
       parserOptions: {
         project: './tsconfig.json',

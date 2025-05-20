@@ -7,3 +7,9 @@
 [![TypeScript](https://img.shields.io/badge/lang-typescript-blue)](https://www.typescriptlang.org/)
 
 Практические задания курса "Прочные основы создания React-приложений" в [Академии Цифра](https://academy.udmr.ru/)
+
+##Задание на итоговую работу##
+###Социальная сеть (мини-версия)###
+- Стек: React + TS, Apollo Client (GraphQL), Chakra UI, React Hook Form.
+- Фичи: Лента постов, комментарии, JWT-аутентификация, ролевая модель (админ/пользователь).
+- Тестирование: Mock API, тесты компонентов.
