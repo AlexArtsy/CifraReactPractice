@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Учебный проект",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "test",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
@@ -48,6 +52,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
-    "typescript-eslint": "^8.29.1"
+    "typescript-eslint": "^8.29.1",
+    "vite": "^6.3.5"
   }
 }
