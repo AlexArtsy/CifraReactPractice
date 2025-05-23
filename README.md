@@ -13,3 +13,5 @@
 - Стек: React + TS, Apollo Client (GraphQL), Chakra UI, React Hook Form.
 - Фичи: Лента постов, комментарии, JWT-аутентификация, ролевая модель (админ/пользователь).
 - Тестирование: Mock API, тесты компонентов.
+
+Сервер статики: [vercel.app](https://cifra-react-practice.vercel.app/)

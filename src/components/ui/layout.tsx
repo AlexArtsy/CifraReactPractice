@@ -1,9 +1,13 @@
-import { Flex, Box, useDisclosure, IconButton, Heading, Avatar } from '@chakra-ui/react';
-// import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { Flex, Box, useDisclosure, IconButton, Heading } from '@chakra-ui/react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-const Layout = ({ isAuth, onLogout }) => {
-  const { isOpen, onToggle } = useDisclosure();
+interface LayoutProps {
+  isAuth: boolean;
+  onLogout: () => void;
+}
+
+const Layout = ({ isAuth, onLogout }: LayoutProps) => {
+  const { open, onToggle } = useDisclosure();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,13 +17,12 @@ const Layout = ({ isAuth, onLogout }) => {
 
   return (
     <Flex minH="100vh" bg="gray.50">
-      {/* Сайдбар - скрывается на мобильных */}
       <Box
         as="aside"
         w={{ base: 'full', md: 60 }}
         bg="teal.600"
         color="white"
-        display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
+        display={{ base: open ? 'block' : 'none', md: 'block' }}
         position={{ base: 'fixed', md: 'static' }}
         h={{ base: 'full', md: 'auto' }}
         zIndex="sticky"
@@ -49,15 +52,9 @@ const Layout = ({ isAuth, onLogout }) => {
         {/* Хедер */}
         <Box as="header" bg="white" boxShadow="sm" p={4}>
           <Flex justify="space-between" align="center">
-            <IconButton
-              display={{ md: 'none' }}
-              // icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-              onClick={onToggle}
-              aria-label="Toggle sidebar"
-            />
+            <IconButton display={{ md: 'none' }} onClick={onToggle} aria-label="Toggle sidebar" />
 
             <Flex align="center" gap={4}>
-              {/* <Avatar size="sm" name="User Name" src="" /> */}
               {isAuth && (
                 <Box
                   as="button"
