@@ -3,8 +3,8 @@ import PrivateRoute from '@/components/private-route';
 import Layout from '@/components/ui/layout';
 import Login from '@/pages/login';
 import Feed from '@/pages/feed';
-import Profile from '@/pages/profile';
 import { useState } from 'react';
+import { UserProfilePage } from './pages/user-profile-page';
 
 function App() {
   const [isAuth, setIsAuth] = useState(!!localStorage.getItem('isAuth'));
@@ -28,7 +28,7 @@ function App() {
       <Route element={<PrivateRoute isAuth={isAuth} />}>
         <Route element={<Layout isAuth={isAuth} onLogout={handleLogout} />}>
           <Route path="/" element={<Feed />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<UserProfilePage />} />
         </Route>
       </Route>
 
