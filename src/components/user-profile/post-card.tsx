@@ -15,6 +15,8 @@ import { useForm } from 'react-hook-form';
 import { Post, Comment } from '../../types/user';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { Avatar } from '../ui/avatar';
+import { useDeletePostMutation, useUpdatePostMutation } from '../../store/api';
+import { Rating } from '../ui/rating';
 
 interface PostCardBaseProps {
   isOwner: boolean;
@@ -43,6 +45,16 @@ interface CommentFormData {
 export const PostCard = (props: PostCardProps) => {
   const { register, handleSubmit, reset } = useForm<CommentFormData>();
   const { open, onToggle } = useDisclosure();
+  const [deletePost] = useDeletePostMutation();
+  const [updatePost] = useUpdatePostMutation();
+
+  const handleDelete = async (postId: string) => {
+    try {
+      await deletePost(postId).unwrap();
+    } catch (error) {
+      console.error('Failed:', error);
+    }
+  };
 
   const onSubmit = (data: CommentFormData) => {
     if (props.mode === 'create') {
@@ -83,14 +95,16 @@ export const PostCard = (props: PostCardProps) => {
   }
 
   const { post, isOwner } = props;
+  const { author, averageRating } = post;
 
   return (
     <Box p={4} rounded="lg" boxShadow="md" bg="white">
       <Flex gap={3} mb={4}>
-        <Avatar src={post.author.avatar} />
+        <Avatar src={author.avatar} />
         <Box flex={1}>
           <Heading as="h4" size="sm">
-            {post.author.name}
+            {`${author.firstName} ${author.lastName}`}
+            <Rating defaultValue={averageRating} size="sm" />
           </Heading>
           <Text fontSize="sm" color="gray.500">
             {new Date(post.createdAt).toLocaleString()}
@@ -98,13 +112,20 @@ export const PostCard = (props: PostCardProps) => {
         </Box>
         {isOwner && (
           <HStack>
-            <IconButton aria-label="Edit post" icon={<EditIcon />} size="sm" variant="ghost" />
+            <IconButton
+              aria-label="Edit post"
+              // icon={<EditIcon />}
+              size="sm"
+              variant="ghost"
+              // onClick={() => setEditingPostId(post.id)}
+            />
             <IconButton
               aria-label="Delete post"
-              icon={<DeleteIcon />}
+              // icon={<DeleteIcon />}
               size="sm"
               variant="ghost"
               colorScheme="red"
+              onClick={() => handleDelete(post.id)}
             />
           </HStack>
         )}
@@ -112,7 +133,7 @@ export const PostCard = (props: PostCardProps) => {
 
       <Text mb={4}>{post.content}</Text>
 
-      {post.comments.length > 0 && (
+      {post.comments && post.comments.length > 0 && (
         <Box pl={8} borderLeft="2px" borderColor="gray.100">
           <Box display="flex" flexDirection="column" gap={8} width="100%">
             {post.comments.map((comment) => (

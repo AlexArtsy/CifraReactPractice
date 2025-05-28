@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/ui/layout';
 import Login from '@/pages/login';
-import Feed from '@/pages/feed';
+import Feed from '@/pages/feed-page';
 import { UserProfilePage } from './pages/user-profile-page';
 import PrivateRoute from './components/private-route';
+import { ProfilePage } from './pages/profile-page';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Feed />} />
           <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
         </Route>
       </Route>
 

@@ -2,24 +2,28 @@ export type Gender = 'male' | 'female' | 'other';
 
 export interface User {
   id: string;
-  avatar: string;
   firstName: string;
   lastName: string;
   middleName?: string;
-  gender: Gender;
-  phone: string;
-  about: string;
-  status: string;
-  isOwner: boolean;
+  email: string;
+  phone?: string;
+  avatar?: string;
+  gender?: string;
+  status?: string;
+  about?: string;
+  role: 'user' | 'admin';
+  isOwner?: boolean;
 }
 
 export interface Post {
   id: string;
   author: {
-    id: string;
-    name: string;
-    avatar: string;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    avatar?: string;
   };
+  averageRating?: number;
   content: string;
   createdAt: string;
   comments: Comment[];
@@ -30,7 +34,7 @@ export interface Comment {
   author: {
     id: string;
     name: string;
-    avatar: string;
+    avatar?: string;
   };
   content: string;
   createdAt: string;
