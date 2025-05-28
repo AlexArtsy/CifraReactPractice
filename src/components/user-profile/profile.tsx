@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { User, Post } from '../../types/user';
+import { User } from '../../types/user';
 import { UserProfileCard } from './user-profile-card';
 import { PostsWall } from './post-wall';
 

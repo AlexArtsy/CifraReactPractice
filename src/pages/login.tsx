@@ -11,7 +11,7 @@ interface LoginFormData {
 
 export default function Login() {
   const navigate = useNavigate();
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const {
     register,
     handleSubmit,
@@ -24,7 +24,6 @@ export default function Login() {
       const response = await login(data).unwrap();
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
-      console.log(response);
       navigate('/');
     } catch (err) {
       console.error('Login failed:', err);
