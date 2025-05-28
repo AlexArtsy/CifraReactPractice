@@ -12,7 +12,14 @@ import { Button, Flex, Input, Stack, Textarea } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { User } from '@/types/user';
 
-export const EditModal = ({ isOpen, onClose, user, onUserUpdate }) => {
+interface EditModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  user: User;
+  onUserUpdate: () => void | Promise<void>;
+}
+
+export const EditModal = ({ isOpen, onClose, user, onUserUpdate }: EditModalProps) => {
   const {
     register,
     handleSubmit,
@@ -22,6 +29,7 @@ export const EditModal = ({ isOpen, onClose, user, onUserUpdate }) => {
   });
 
   const onSubmit = async () => {
+    await onUserUpdate();
     onClose();
   };
 
