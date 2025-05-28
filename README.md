@@ -15,3 +15,5 @@
 - Тестирование: Mock API, тесты компонентов.
 
 Сервер статики: [vercel.app](https://cifra-react-practice.vercel.app/)
+API сервер: [Express](http://5.39.219.48:3000)
+Swagger: [swagger](http://5.39.219.48:3000/api-docs/)
