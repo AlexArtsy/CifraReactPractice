@@ -1,7 +1,7 @@
-import { VStack, Box, Heading, Skeleton, Alert } from '@chakra-ui/react';
+import { VStack, Box, Heading } from '@chakra-ui/react';
 import { PostCard } from './post-card';
 import { useGetUserPostsByIdQuery } from '../../store/api';
-import { User } from '@/types/user';
+import { Post, User } from '@/types/user';
 
 interface PostsWallProps {
   user: User;
@@ -17,9 +17,8 @@ export const PostsWall = ({ isOwner, user }: PostsWallProps) => {
         Посты {user.firstName}
       </Heading>
       <VStack align="stretch">
-        {/* {isOwner && <PostCard isOwner={isOwner} onPostCreate={onPostCreate} mode="create" />} */}
-        {postsData.map((post) => (
-          <PostCard key={post.id} post={post} isOwner={isOwner} />
+        {postsData.map((post: Post) => (
+          <PostCard key={post.id} post={post} isOwner={isOwner} onCommentCreate={() => {}} />
         ))}
       </VStack>
     </Box>

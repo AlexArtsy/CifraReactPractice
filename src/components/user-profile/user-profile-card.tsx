@@ -7,13 +7,8 @@ import {
   Stack,
   IconButton,
   useDisclosure,
-  Input,
-  Textarea,
-  Select,
-  Button,
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
-import { useForm } from 'react-hook-form';
 import { User } from '../../types/user';
 import { Avatar } from '../ui/avatar';
 import { EditModal } from './edit-modal';
@@ -21,7 +16,7 @@ import { EditModal } from './edit-modal';
 interface UserProfileCardProps {
   user: User;
   isOwner: boolean;
-  onUserUpdate: (updatedUser: Partial<User>) => void;
+  onUserUpdate: () => void;
 }
 
 export const UserProfileCard = ({ user, isOwner, onUserUpdate }: UserProfileCardProps) => {

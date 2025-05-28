@@ -1,12 +1,12 @@
 import { Box } from '@chakra-ui/react';
-import { User, Post } from '../../types/user';
+import { User } from '../../types/user';
 import { UserProfileCard } from './user-profile-card';
 import { PostsWall } from './post-wall';
 
 interface UserProfileProps {
   user: User;
   isOwner: boolean;
-  onUserUpdate: (updatedUser: Partial<User>) => void;
+  onUserUpdate: () => void;
 }
 
 export const UserProfile = ({ user, isOwner, onUserUpdate }: UserProfileProps) => {

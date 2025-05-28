@@ -1,6 +1,7 @@
 import { VStack, Box, Heading, Skeleton } from '@chakra-ui/react';
 import { useGetPostsQuery } from '../../store/api';
 import { FeedPost } from './feed-post';
+import { Post } from '@/types/user';
 
 export const FeedWall = () => {
   const { data: posts = [], isLoading } = useGetPostsQuery(undefined);
@@ -21,7 +22,7 @@ export const FeedWall = () => {
         Лента новостей
       </Heading>
       <VStack align="stretch">
-        {posts && posts.map((post) => <FeedPost key={post.id} post={post} />)}
+        {posts && posts.map((post: Post) => <FeedPost key={post.id} post={post} />)}
       </VStack>
     </Box>
   );

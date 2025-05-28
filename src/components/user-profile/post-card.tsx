@@ -12,7 +12,6 @@ import {
 import { useForm } from 'react-hook-form';
 import { Post } from '../../types/user';
 import { Avatar } from '../ui/avatar';
-import { useDeletePostMutation } from '../../store/api';
 import { Rating } from '../ui/rating';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
@@ -41,7 +40,7 @@ interface CommentFormData {
 }
 
 export const PostCard = (props: PostCardProps) => {
-  const { register, handleSubmit } = useForm<CommentFormData>();
+  const { register } = useForm<CommentFormData>();
   const { open, onToggle } = useDisclosure();
 
   if (props.mode === 'create') {
