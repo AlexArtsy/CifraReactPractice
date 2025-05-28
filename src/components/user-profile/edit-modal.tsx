@@ -8,7 +8,7 @@ import {
   ModalFooter,
 } from '@chakra-ui/modal';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
-import { Button, Flex, Input, Select, Stack, Textarea } from '@chakra-ui/react';
+import { Button, Flex, Input, Stack, Textarea } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { User } from '@/types/user';
 
@@ -21,7 +21,7 @@ export const EditModal = ({ isOpen, onClose, user, onUserUpdate }) => {
     defaultValues: user,
   });
 
-  const onSubmit = async (data: Partial<User>) => {
+  const onSubmit = async () => {
     onClose();
   };
 
@@ -55,15 +55,6 @@ export const EditModal = ({ isOpen, onClose, user, onUserUpdate }) => {
             <FormControl>
               <FormLabel>Middle Name</FormLabel>
               <Input {...register('middleName')} />
-            </FormControl>
-
-            <FormControl>
-              <FormLabel>Gender</FormLabel>
-              {/* <Select {...register('gender')} placeholder="Select gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </Select> */}
             </FormControl>
 
             <FormControl>

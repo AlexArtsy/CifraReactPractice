@@ -1,6 +1,5 @@
 import { Box, Flex, Text, Heading, Button } from '@chakra-ui/react';
-import { Post, Comment } from '../../types/user';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Post } from '../../types/user';
 import { Avatar } from '../ui/avatar';
 import { useNavigate } from 'react-router-dom';
 import { Rating } from '../ui/rating';

@@ -3,8 +3,6 @@ import {
   Flex,
   Text,
   Heading,
-  Badge,
-  Stack,
   Textarea,
   Button,
   HStack,
@@ -12,16 +10,16 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { Post, Comment } from '../../types/user';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Post } from '../../types/user';
 import { Avatar } from '../ui/avatar';
-import { useDeletePostMutation, useUpdatePostMutation } from '../../store/api';
+import { useDeletePostMutation } from '../../store/api';
 import { Rating } from '../ui/rating';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
 interface PostCardBaseProps {
   isOwner: boolean;
-  onCommentCreate?: (content: string) => void;
-  onPostCreate?: (content: string) => void;
+  onCommentCreate?: () => void;
+  onPostCreate?: () => void;
 }
 
 interface PostCardCreateProps extends PostCardBaseProps {
@@ -33,7 +31,7 @@ interface PostCardCreateProps extends PostCardBaseProps {
 interface PostCardViewProps extends PostCardBaseProps {
   mode?: 'view';
   post: Post;
-  onCommentCreate: (content: string) => void;
+  onCommentCreate: () => void;
 }
 
 type PostCardProps = PostCardCreateProps | PostCardViewProps;
@@ -43,30 +41,8 @@ interface CommentFormData {
 }
 
 export const PostCard = (props: PostCardProps) => {
-  const { register, handleSubmit, reset } = useForm<CommentFormData>();
+  const { register, handleSubmit } = useForm<CommentFormData>();
   const { open, onToggle } = useDisclosure();
-  const [deletePost] = useDeletePostMutation();
-  const [updatePost] = useUpdatePostMutation();
-
-  const handleDelete = async (postId: string) => {
-    try {
-      await deletePost(postId).unwrap();
-    } catch (error) {
-      console.error('Failed:', error);
-    }
-  };
-
-  const onSubmit = (data: CommentFormData) => {
-    if (props.mode === 'create') {
-      props.onPostCreate?.(data.content);
-    } else {
-      props.onCommentCreate(data.content);
-    }
-    reset();
-    if (props.mode === 'create') {
-      onToggle();
-    }
-  };
 
   if (props.mode === 'create') {
     return (
@@ -76,7 +52,7 @@ export const PostCard = (props: PostCardProps) => {
             Create new post
           </Button>
         ) : (
-          <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+          <Box as="form">
             <Textarea
               {...register('content', { required: true })}
               placeholder="What's on your mind?"
@@ -112,21 +88,12 @@ export const PostCard = (props: PostCardProps) => {
         </Box>
         {isOwner && (
           <HStack>
-            <IconButton
-              aria-label="Edit post"
-              // icon={<EditIcon />}
-              size="sm"
-              variant="ghost"
-              // onClick={() => setEditingPostId(post.id)}
-            />
-            <IconButton
-              aria-label="Delete post"
-              // icon={<DeleteIcon />}
-              size="sm"
-              variant="ghost"
-              colorScheme="red"
-              onClick={() => handleDelete(post.id)}
-            />
+            <IconButton aria-label="Edit post" size="sm" variant="ghost">
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="Delete post" size="sm" variant="ghost" colorScheme="red">
+              <DeleteIcon />
+            </IconButton>
           </HStack>
         )}
       </Flex>
@@ -154,7 +121,7 @@ export const PostCard = (props: PostCardProps) => {
         </Box>
       )}
 
-      <Box mt={4} as="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box mt={4} as="form">
         <Textarea
           {...register('content', { required: true })}
           placeholder="Write a comment..."

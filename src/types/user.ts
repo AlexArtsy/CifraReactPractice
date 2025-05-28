@@ -1,6 +1,7 @@
 export type Gender = 'male' | 'female' | 'other';
 
 export interface User {
+  _id: string;
   id: string;
   firstName: string;
   lastName: string;

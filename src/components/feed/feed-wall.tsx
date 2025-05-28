@@ -1,17 +1,9 @@
-import { VStack, Box, Heading, Skeleton, Alert } from '@chakra-ui/react';
-import { Post } from '../../types/user';
+import { VStack, Box, Heading, Skeleton } from '@chakra-ui/react';
 import { useGetPostsQuery } from '../../store/api';
 import { FeedPost } from './feed-post';
 
-interface PostsWallProps {
-  posts: Post[];
-  isOwner: boolean;
-  onPostCreate?: (content: string) => void;
-  onCommentCreate: (postId: string, content: string) => void;
-}
-
 export const FeedWall = () => {
-  const { data: posts = [], isLoading, isError, refetch } = useGetPostsQuery(undefined);
+  const { data: posts = [], isLoading } = useGetPostsQuery(undefined);
 
   if (isLoading) {
     return (
@@ -22,18 +14,6 @@ export const FeedWall = () => {
       </VStack>
     );
   }
-
-  // if (isError) {
-  //   return (
-  //     // <Alert status="error" mb={4}>
-  //     //   {/* <AlertIcon /> */}
-  //     //   Failed to load posts.{' '}
-  //     //   <Button variant="link" onClick={refetch}>
-  //     //     Retry
-  //     //   </Button>
-  //     // </Alert>
-  //   );
-  // }
 
   return (
     <Box>

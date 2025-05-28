@@ -9,32 +9,7 @@ interface PostsWallProps {
 }
 
 export const PostsWall = ({ isOwner, user }: PostsWallProps) => {
-  const { data: postsData = [], refetch: refetchPosts } = useGetUserPostsByIdQuery(
-    user.id ?? user._id,
-  );
-  //const { data: posts = [], isLoading, isError, refetch } = useGetPostsQuery();
-
-  // if (isLoading) {
-  //   return (
-  //     <VStack>
-  //       {[...Array(3)].map((_, i) => (
-  //         <Skeleton key={i} width="100%" height="200px" borderRadius="md" />
-  //       ))}
-  //     </VStack>
-  //   );
-  // }
-
-  // if (isError) {
-  //   return (
-  //     // <Alert status="error" mb={4}>
-  //     //   {/* <AlertIcon /> */}
-  //     //   Failed to load posts.{' '}
-  //     //   <Button variant="link" onClick={refetch}>
-  //     //     Retry
-  //     //   </Button>
-  //     // </Alert>
-  //   );
-  // }
+  const { data: postsData = [] } = useGetUserPostsByIdQuery(user.id ?? user._id);
 
   return (
     <Box>
