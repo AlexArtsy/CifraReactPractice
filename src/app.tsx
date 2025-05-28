@@ -1,33 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoute from '@/components/private-route';
 import Layout from '@/components/ui/layout';
 import Login from '@/pages/login';
 import Feed from '@/pages/feed';
-import { useState } from 'react';
 import { UserProfilePage } from './pages/user-profile-page';
+import PrivateRoute from './components/private-route';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem('isAuth'));
-
-  const handleLogin = () => {
-    localStorage.setItem('isAuth', 'true');
-    setIsAuth(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('isAuth');
-    setIsAuth(false);
-  };
-
   return (
     <Routes>
-      {/* Публичный маршрут без лейаута */}
-      <Route path="/login" element={<Login onLogin={handleLogin} />} />
+      {/* Публичные маршруты */}
+      <Route path="/login" element={<Login />} />
 
-      {/* Приватные маршруты с лейаутом */}
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route element={<Layout isAuth={isAuth} onLogout={handleLogout} />}>
-          <Route path="/" element={<Feed />} />
+      {/* Приватные маршруты */}
+      <Route element={<PrivateRoute />}>
+        <Route element={<Layout />}>
+          <Route index element={<Feed />} />
           <Route path="/profile" element={<UserProfilePage />} />
         </Route>
       </Route>

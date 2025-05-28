@@ -1,22 +1,19 @@
 import { Flex, Box, useDisclosure, IconButton, Heading } from '@chakra-ui/react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-interface LayoutProps {
-  isAuth: boolean;
-  onLogout: () => void;
-}
-
-const Layout = ({ isAuth, onLogout }: LayoutProps) => {
+const Layout = () => {
   const { open, onToggle } = useDisclosure();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    onLogout();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
   return (
     <Flex minH="100vh" bg="gray.50">
+      {/* Сайдбар */}
       <Box
         as="aside"
         w={{ base: 'full', md: 60 }}
@@ -55,22 +52,20 @@ const Layout = ({ isAuth, onLogout }: LayoutProps) => {
             <IconButton display={{ md: 'none' }} onClick={onToggle} aria-label="Toggle sidebar" />
 
             <Flex align="center" gap={4}>
-              {isAuth && (
-                <Box
-                  as="button"
-                  onClick={handleLogout}
-                  color="gray.600"
-                  _hover={{ color: 'teal.600' }}
-                >
-                  Выйти
-                </Box>
-              )}
+              <Box
+                as="button"
+                onClick={handleLogout}
+                color="gray.600"
+                _hover={{ color: 'teal.600' }}
+              >
+                Выйти
+              </Box>
             </Flex>
           </Flex>
         </Box>
 
         {/* Контент страницы */}
-        <Box as="main" p={4}>
+        <Box as="main" p={4} color="gray.800">
           <Outlet />
         </Box>
       </Box>

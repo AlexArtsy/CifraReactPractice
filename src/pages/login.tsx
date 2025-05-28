@@ -2,29 +2,37 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Input, VStack } from '@chakra-ui/react';
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/form-control';
-
-interface LoginProps {
-  onLogin: () => void;
-}
+import { useLoginMutation } from '@/store/api';
 
 interface LoginFormData {
   username: string;
   password: string;
 }
 
-export default function Login({ onLogin }: LoginProps) {
+export default function Login() {
   const navigate = useNavigate();
+  const [login, { isLoading, error }] = useLoginMutation();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
+    setError,
   } = useForm<LoginFormData>();
 
-  const onSubmit = (data: LoginFormData) => {
-    // Здесь должна быть реальная проверка авторизации
-    if (data.username && data.password) {
-      onLogin();
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      const response = await login(data).unwrap();
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
+      console.log(response);
       navigate('/');
+    } catch (err) {
+      console.error('Login failed:', err);
+
+      setError('root', {
+        type: 'manual',
+        message: 'Неверные учетные данные',
+      });
     }
   };
 
@@ -35,6 +43,7 @@ export default function Login({ onLogin }: LoginProps) {
         onSubmit={handleSubmit(onSubmit)}
         p={8}
         bg="white"
+        color="gray.800"
         boxShadow="md"
         borderRadius="md"
         w="md"
@@ -50,7 +59,7 @@ export default function Login({ onLogin }: LoginProps) {
                 minLength: { value: 3, message: 'Минимум 3 символа' },
               })}
             />
-            <FormErrorMessage>{errors.username && errors.username.message}</FormErrorMessage>
+            <FormErrorMessage>{errors.username?.message}</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={!!errors.password}>
@@ -64,14 +73,21 @@ export default function Login({ onLogin }: LoginProps) {
                 minLength: { value: 6, message: 'Минимум 6 символов' },
               })}
             />
-            <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
+            <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
           </FormControl>
+
+          {/* Общая ошибка формы */}
+          {errors.root && (
+            <Box color="red.500" fontSize="sm" textAlign="center" w="full">
+              {errors.root.message}
+            </Box>
+          )}
 
           <Button
             type="submit"
             colorScheme="teal"
             w="full"
-            loading={isSubmitting}
+            loading={isLoading}
             loadingText="Вход..."
           >
             Войти
