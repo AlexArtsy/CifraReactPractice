@@ -25,7 +25,10 @@ export const FeedPost = (props: FeedPostProps) => {
         <Avatar src={author.avatar} />
         <Box flex={1}>
           <Heading as="h4" size="sm">
-            <Button onClick={handleOnClick}>{`${author.firstName} ${author.lastName}`}</Button>
+            <Button
+              onClick={handleOnClick}
+              variant="ghost"
+            >{`${author.firstName} ${author.lastName}`}</Button>
             <Rating defaultValue={averageRating} size="sm" />
           </Heading>
           <Text fontSize="sm" color="gray.500">

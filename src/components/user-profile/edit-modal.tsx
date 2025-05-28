@@ -34,13 +34,13 @@ export const EditModal = ({ isOpen, onClose, user, onUserUpdate }: EditModalProp
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
       <ModalOverlay bg="blackAlpha.600" />
       <ModalContent bg="white" borderRadius="lg" maxW="600px" mx="auto" color="gray.800">
         <ModalHeader borderBottom="1px" borderColor="gray.200">
           Edit Profile
         </ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton position="absolute" right="4" top="4" />
         <ModalBody py={6} color="gray.800">
           <Stack>
             <FormControl>
